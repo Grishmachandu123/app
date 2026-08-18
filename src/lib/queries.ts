@@ -15,7 +15,7 @@ const PRODUCT_COLUMNS = "*, category:categories!inner(id, slug, name), images:pr
 export const FALLBACK_SETTINGS: SiteSettings = {
   id: "fallback",
   business_name: "Vyshnavi Sarees Center",
-  whatsapp_number: "910000000000",
+  whatsapp_number: "919052736066",
   instagram_url: null,
   contact_information: "Call or WhatsApp us any day between 10 AM and 8 PM.",
   about_text:

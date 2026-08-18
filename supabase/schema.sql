@@ -74,7 +74,7 @@ create table if not exists product_relationships (
 create table if not exists site_settings (
   id uuid primary key default gen_random_uuid(),
   business_name text not null default 'Vyshnavi Sarees Center',
-  whatsapp_number text not null default '910000000000',
+  whatsapp_number text not null default '919052736066',
   instagram_url text,
   contact_information text,
   about_text text,
@@ -131,7 +131,7 @@ values
 on conflict (slug) do nothing;
 
 insert into site_settings (business_name, whatsapp_number, contact_information, about_text)
-select 'Vyshnavi Sarees Center', '910000000000',
+select 'Vyshnavi Sarees Center', '919052736066',
        'Call or WhatsApp us any day between 10 AM and 8 PM.',
        'We are a small family run boutique bringing you handpicked sarees and one-gram gold jewellery at honest prices.'
 where not exists (select 1 from site_settings);
