@@ -2,20 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    @apply bg-cream-50 text-ink-800 font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif text-ink-900;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium
+      transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400
+      focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-primary {
+    @apply btn bg-ink-900 text-cream-50 hover:bg-ink-700;
+  }
+
+  .btn-gold {
+    @apply btn bg-gold-400 text-white hover:bg-gold-500;
+  }
+
+  .btn-outline {
+    @apply btn border border-gold-300 bg-transparent text-ink-800 hover:bg-gold-50;
+  }
+
+  .btn-whatsapp {
+    @apply btn bg-[#25D366] text-white hover:bg-[#1da851];
+  }
+
+  .card {
+    @apply rounded-2xl border border-cream-300/70 bg-white shadow-card;
+  }
+
+  .input {
+    @apply w-full rounded-lg border border-cream-300 bg-white px-3 py-2 text-sm text-ink-800
+      placeholder:text-ink-700/40 focus:border-gold-300 focus:outline-none focus:ring-1 focus:ring-gold-300;
+  }
+
+  .label {
+    @apply mb-1 block text-xs font-medium uppercase tracking-wide text-ink-700;
+  }
+
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.28em] text-gold-500;
+  }
 }

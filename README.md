@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vasthra Boutique
 
-## Getting Started
+Catalogue website for an Indian women's fashion business selling **sarees** and **one-gram gold jewellery**
+under one brand. Customers browse real product photographs and order over WhatsApp — there is no online
+payment, no customer account and no checkout.
 
-First, run the development server:
+Built with Next.js (App Router), React, TypeScript, Tailwind CSS, Supabase (PostgreSQL, Auth, Storage) and
+deployable on Vercel's free tier.
+
+## Features
+
+**Storefront**
+- Home page with hero, category cards, new arrivals, featured sarees/jewellery, Shop the Look, why-choose-us and a WhatsApp CTA
+- `/sarees` and `/one-gram-gold` listings with subcategory tabs, price/colour/fabric/type/design/availability filters, sorting and pagination
+- Product pages at `/sarees/[slug]` and `/one-gram-gold/[slug]` with a zoomable gallery, full specifications, Complete the Look and JSON-LD structured data
+- Global search across name, product ID, colour, design and product type
+- Floating WhatsApp button; every product has "Order on WhatsApp" and "Ask about this product" with a pre-filled message
+- Sitemap, robots.txt, per-page metadata, responsive mobile-first layout
+
+**Admin** (`/admin`, Supabase Auth only — no public sign-up)
+- Dashboard counts: total, sarees, jewellery, available, sold out, new arrivals
+- Product list with search, inline toggles (sold out / featured / new arrival) and delete
+- Add/edit form with category-specific fields (fabric, saree type, blouse, length / jewellery type, set contents)
+- Image manager: multi-upload, browser-side compression to WebP, preview, reorder, delete, main-image selection
+- Shop the Look relationship manager
+- Site settings: business name, WhatsApp number, Instagram, contact info, about text, logo
+
+## Getting started
 
 ```bash
+npm install
+cp .env.example .env.local   # fill in the Supabase values
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| Variable | Description |
+| --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon/public key |
+| `NEXT_PUBLIC_SITE_URL` | Public site URL, used for metadata and the sitemap |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Supabase setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Create a free project at [supabase.com](https://supabase.com).
+2. Open the SQL editor and run [`supabase/schema.sql`](supabase/schema.sql). It creates the `categories`,
+   `products`, `product_images`, `product_relationships` and `site_settings` tables with indexes, triggers,
+   seed data, Row Level Security policies and the public `product-images` storage bucket.
+3. Create the owner account under **Authentication → Users → Add user** (email + password). This is the only
+   account that can reach `/admin`; leave public sign-ups disabled.
+4. Copy the project URL and anon key into `.env.local`.
+5. Sign in at `/admin/login` and set the WhatsApp number under **Site settings** before publishing products.
 
-## Learn More
+### Security model
 
-To learn more about Next.js, take a look at the following resources:
+Anonymous visitors can read published products, their images, categories and site settings. Every write
+(products, images, relationships, settings, storage uploads) requires an authenticated session, enforced by
+RLS in Postgres and by middleware protecting `/admin/*`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploying to Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Push the repository to GitHub and import it in Vercel.
+2. Add the three environment variables above (set `NEXT_PUBLIC_SITE_URL` to the production domain).
+3. Deploy — the app uses no local filesystem or long-running server processes.
 
-## Deploy on Vercel
+## Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run dev     # development server
+npm run build   # production build
+npm run start   # serve the production build
+npm run lint    # eslint
+```
