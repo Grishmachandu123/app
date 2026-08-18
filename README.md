@@ -1,4 +1,4 @@
-# Vasthra Boutique
+# Vyshnavi Sarees Center
 
 Catalogue website for an Indian women's fashion business selling **sarees** and **one-gram gold jewellery**
 under one brand. Customers browse real product photographs and order over WhatsApp — there is no online

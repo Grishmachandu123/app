@@ -33,7 +33,7 @@ export default function AdminNav({ email }: { email: string }) {
       <div className="container-page flex flex-wrap items-center justify-between gap-3 py-4">
         <div className="flex items-center gap-6">
           <Link href="/admin" className="font-serif text-xl">
-            Boutique Admin
+            Vyshnavi Sarees Admin
           </Link>
           <nav className="flex gap-4 text-sm" aria-label="Admin">
             {LINKS.map((link) => (

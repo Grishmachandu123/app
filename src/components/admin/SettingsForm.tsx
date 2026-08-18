@@ -9,7 +9,7 @@ import type { SiteSettings } from "@/lib/types";
 export default function SettingsForm({ settings }: { settings: SiteSettings | null }) {
   const router = useRouter();
   const [form, setForm] = useState({
-    business_name: settings?.business_name ?? "Vasthra Boutique",
+    business_name: settings?.business_name ?? "Vyshnavi Sarees Center",
     whatsapp_number: settings?.whatsapp_number ?? "",
     instagram_url: settings?.instagram_url ?? "",
     contact_information: settings?.contact_information ?? "",

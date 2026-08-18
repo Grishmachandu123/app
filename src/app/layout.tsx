@@ -21,15 +21,15 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Sarees & One-Gram Gold Jewellery Boutique",
-    template: "%s | Vasthra Boutique",
+    default: "Vyshnavi Sarees Center | Sarees & One-Gram Gold Jewellery",
+    template: "%s | Vyshnavi Sarees Center",
   },
   description:
     "Handpicked sarees and one-gram gold jewellery for weddings, festivals and everyday elegance. Order easily on WhatsApp.",
   openGraph: {
     type: "website",
     locale: "en_IN",
-    siteName: "Vasthra Boutique",
+    siteName: "Vyshnavi Sarees Center",
   },
   robots: { index: true, follow: true },
 };
